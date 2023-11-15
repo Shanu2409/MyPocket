@@ -23,7 +23,6 @@
             android:orientation="vertical"
             >
             <TextView
-                android:id="@+id/balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -34,7 +33,7 @@
                 tools:ignore="InvalidId" />
 
             <TextView
-                android:id="@+id/min"
+                android:id="@+id/balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="₹300"
@@ -84,6 +83,7 @@
                 android:gravity="center">
 
                 <TextView
+
                     android:id="@+id/budget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                 android:layout_weight="0.5"
                 android:gravity="center">
                 <TextView
-                    android:id="@+id/edpanse"
+                    android:id="@+id/expanse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="₹100"
@@ -140,7 +140,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/transaction"
@@ -148,18 +148,21 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add"
+        android:id="@+id/addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/add"
         app:backgroundTint="#AEAEAE"
         app:fabSize="normal" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/sub"
+        android:id="@+id/subBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
