@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.abs
 
-class TransactionAdapter(private val transactions: List<Transactions>) :
+class TransactionAdapter(private var transactions: List<Transactions>) :
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
     class TransactionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -41,6 +41,11 @@ class TransactionAdapter(private val transactions: List<Transactions>) :
         holder.amount.text = transaction.amount.toString()
         holder.date.text = transaction.date
 
+    }
+
+    fun setData(transactions: List<Transactions>) {
+        this.transactions = transactions
+        notifyDataSetChanged()
     }
 
 

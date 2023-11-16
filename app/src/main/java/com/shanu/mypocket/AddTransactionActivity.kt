@@ -6,8 +6,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.core.widget.addTextChangedListener
+import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 class AddTransactionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,17 +44,22 @@ class AddTransactionActivity : AppCompatActivity() {
         addTransactionBtn.setOnClickListener {
             val label = labelInput.text.toString()
             val description = descriptionInput.text.toString()
-            val amount = amountInput.text.toString().toDoubleOrNull()
+            var amount = amountInput.text.toString().toDoubleOrNull()
+
+//            remove any signs from tha amount only keep decimal numbers
+            if(amount != null) {
+                amount = amount.toString().replace(Regex("[^0-9.]"), "").toDouble()
+            }
 
             if(label.isEmpty())
                 labelLayout.error = "Please enter a valid label"
 
             else if(amount == null)
                 amountLayout.error = "Please enter a valid amount"
-//            else {
-//                val transaction  =Transaction(0, label, amount, description)
-//                insert(transaction)
-//            }
+            else {
+                val transaction  = Transactions(0, label= label, amount = amount, description = description, date = SimpleDateFormat("dd-MM-yyyy").format(System.currentTimeMillis()))
+                insertData(transaction)
+            }
         }
 
         closeBtn.setOnClickListener {
@@ -58,14 +67,16 @@ class AddTransactionActivity : AppCompatActivity() {
         }
     }
 
-//    private fun insert(transaction: Transaction){
-//        val db = Room.databaseBuilder(this,
-//            AppDatabase::class.java,
-//            "transactions").build()
-//
-//        GlobalScope.launch {
-//            db.transactionDao().insertAll(transaction)
-//            finish()
-//        }
-//    }
+    private fun insertData(Transaction: Transactions) {
+        val db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "transactions"
+        ).build()
+
+        GlobalScope.launch {
+            db.transactionDao().insert(Transaction)
+//            fetchAllData()
+            finish()
+        }
+    }
 }

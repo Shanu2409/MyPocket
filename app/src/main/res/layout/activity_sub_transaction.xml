@@ -18,8 +18,8 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         app:lottie_rawRes="@raw/subtransaction"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
